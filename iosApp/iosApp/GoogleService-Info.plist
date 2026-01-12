@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>814173422294-417v81bmv1eo2tr16h0gntpb8dqh7oov.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.814173422294-417v81bmv1eo2tr16h0gntpb8dqh7oov</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>814173422294-1ug2fokif112920qfjepflj75uvs25l0.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDBRJ6rabZuHxI_uJ4yw3RBoP_RZ8A6tAY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>814173422294</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.gabrielferreira-dev.nutrimaster</string>
+	<key>PROJECT_ID</key>
+	<string>nutrimaster</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nutrimaster.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:814173422294:ios:a8a61c77bc01ea4e5ebf77</string>
+</dict>
+</plist>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "814173422294",
+    "project_id": "nutrimaster",
+    "storage_bucket": "nutrimaster.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814173422294:android:506d2690f710e3b45ebf77",
+        "android_client_info": {
+          "package_name": "com.gabrielferreira_dev.nutrimaster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "814173422294-43tcj3j915vi6vf0k39obre1sdgpm45c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7ISDylGqinE23PKwri6Lw0YRC4nDzPoU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "814173422294-43tcj3j915vi6vf0k39obre1sdgpm45c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
