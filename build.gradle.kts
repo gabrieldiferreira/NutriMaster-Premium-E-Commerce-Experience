@@ -13,4 +13,7 @@ buildscript {
         // This part to copy paste
         //classpath("io.kotzilla:kotzilla-plugin:1.2.0-Beta3")
     }
+    dependencyLocking {
+        lockAllConfigurations()
+    }
 }
