@@ -46,6 +46,8 @@ kotlin {
 
             implementation(libs.kotlinx.serialization)
 
+            implementation(libs.firebase.firestore)
+            implementation(libs.auth.firebase.kmp)
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
 

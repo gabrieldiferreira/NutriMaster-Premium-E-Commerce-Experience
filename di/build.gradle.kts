@@ -35,7 +35,6 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
-
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
@@ -44,6 +43,7 @@ kotlin {
            // implementation("io.kotzilla:kotzilla-sdk-ktor3:1.2.0-Beta1")
 
             implementation(project(":feature:auth"))
+            implementation(project(":data"))
 //            implementation(project(":feature:details"))
   //          implementation(project(":feature:home"))
   //          implementation(project(":feature:profile"))
