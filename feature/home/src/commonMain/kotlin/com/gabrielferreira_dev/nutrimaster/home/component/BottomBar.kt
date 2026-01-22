@@ -1,4 +1,4 @@
-package com.gabrielferreira_dev.nutrimaster.component
+package com.gabrielferreira_dev.nutrimaster.home.component
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background

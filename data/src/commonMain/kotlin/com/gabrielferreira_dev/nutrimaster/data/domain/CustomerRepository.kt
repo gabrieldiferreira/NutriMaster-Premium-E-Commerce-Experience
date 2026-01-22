@@ -1,5 +1,6 @@
 package com.gabrielferreira_dev.nutrimaster.data.domain
 
+import com.nutrimaster.shared.util.RequestState
 import dev.gitlive.firebase.auth.FirebaseUser
 
 interface CustomerRepository {
@@ -9,5 +10,6 @@ interface CustomerRepository {
         onSuccess: () -> Unit,
         onError: (String) -> Unit,
     )
+    suspend fun signOut(): RequestState<Unit>
 }
 

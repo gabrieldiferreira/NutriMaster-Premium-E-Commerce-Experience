@@ -20,7 +20,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "di"
+            baseName = "profile"
             isStatic = true
         }
     }
@@ -35,33 +35,20 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
-            implementation(libs.koin.core)
+
+            implementation(libs.messagebar.kmp)
+
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
 
-            // implementation("io.kotzilla:kotzilla-sdk:1.2.0-Beta3")
-           // implementation("io.kotzilla:kotzilla-sdk-ktor3:1.2.0-Beta1")
-
-            implementation(project(":feature:auth"))
-            implementation(project(":data"))
-//            implementation(project(":feature:details"))
-           implementation(project(":feature:home"))
-  //          implementation(project(":feature:profile"))
-  //          implementation(project(":feature:admin_panel"))
-   //         implementation(project(":feature:admin_panel:manage_product"))
-   //         implementation(project(":feature:home:products_overview"))
-  //          implementation(project(":feature:home:cart"))
-   //         implementation(project(":feature:home:cart:checkout"))
-   //         implementation(project(":feature:home:categories:category_search"))
-   //         implementation(project(":feature:payment_completed"))
-   //         implementation(project(":data"))
-            implementation(project(":shared"))
+            implementation(project(path = ":shared"))
+            implementation(project(path = ":data"))
         }
     }
 }
 
 android {
-    namespace = "com.gabrielferreira_dev.nutrimaster.di"
+    namespace = "com.gabrielferreira_dev.nutrimaster.profile"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {

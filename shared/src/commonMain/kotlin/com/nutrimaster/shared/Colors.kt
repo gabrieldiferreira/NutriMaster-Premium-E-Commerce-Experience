@@ -23,9 +23,14 @@ import androidx.compose.ui.graphics.Color
     val TextSecondary = Blue
     val TextWhite = White
     val TextBrand = Blue
+
+    val SurfaceSecondary = Blue
     val TextBrand2 = Green
 
     val SurfaceBrand = GrayLighter
+
+    val BorderIdle = GrayDarker
+    val BorderError = Red
 
     val ButtonPrimary = Blue
     val ButtonSecondary = GrayDarker

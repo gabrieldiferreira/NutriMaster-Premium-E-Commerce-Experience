@@ -1,4 +1,4 @@
-package com.gabrielferreira_dev.nutrimaster.profile.component
+package com.nutrimaster.shared.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -41,8 +41,8 @@ fun AlertTextField(
             .clip(RoundedCornerShape(6.dp))
             .clickable{ onClick() }
             .padding(
-                vertical = 20.dp,
-                horizontal = 20.dp
+                vertical = 16.dp,
+                horizontal = 16.dp
             ),
         verticalAlignment = Alignment.CenterVertically
     ){

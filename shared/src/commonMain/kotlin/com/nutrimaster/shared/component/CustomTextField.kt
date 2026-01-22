@@ -1,25 +1,28 @@
-package com.gabrielferreira_dev.nutrimaster.profile.component
+package com.nutrimaster.shared.component
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material3.Text
-//noinspection UsingMaterialAndMaterial3Libraries
-import androidx.compose.material.TextField
-//noinspection UsingMaterialAndMaterial3Libraries
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.nutrimaster.shared.Alpha
 import com.nutrimaster.shared.BorderError
 import com.nutrimaster.shared.BorderIdle
 import com.nutrimaster.shared.FontSize
+import com.nutrimaster.shared.IconSecondary
+import com.nutrimaster.shared.SurfaceDarker
 import com.nutrimaster.shared.SurfaceLighter
 import com.nutrimaster.shared.TextPrimary
 
@@ -37,7 +40,6 @@ fun CustomTextField(
         keyboardType = KeyboardType.Text
     )
 ){
-
     val borderColor by animateColorAsState(
         targetValue = if (error) BorderError else BorderIdle
     )
@@ -49,7 +51,8 @@ fun CustomTextField(
                 width = 1.dp,
                 color = borderColor,
                 shape = RoundedCornerShape(size = 6.dp)
-            ),
+            )
+            .clip(RoundedCornerShape(size = 6.dp)),
         enabled = enabled,
         value = value,
         onValueChange = onValueChange,
@@ -65,10 +68,24 @@ fun CustomTextField(
         singleLine = !expanded,
         shape = RoundedCornerShape(size = 6.dp),
         keyboardOptions = keyboardOptions,
-        colors = TextFieldDefaults.textFieldColors(
-            textColor = TextPrimary,
+        colors = TextFieldDefaults.colors(
+            unfocusedContainerColor = SurfaceLighter,
+            focusedContainerColor = SurfaceLighter,
+            focusedTextColor = TextPrimary,
+            unfocusedTextColor = TextPrimary,
             disabledTextColor = TextPrimary.copy(alpha = Alpha.DISABLED),
-            backgroundColor = SurfaceLighter
+            focusedPlaceholderColor = TextPrimary.copy(alpha = Alpha.HALF),
+            unfocusedPlaceholderColor = TextPrimary.copy(alpha = Alpha.HALF),
+            disabledPlaceholderColor = TextPrimary.copy(alpha = Alpha.DISABLED),
+            disabledContainerColor = SurfaceDarker,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            errorIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent,
+            selectionColors = TextSelectionColors(
+                handleColor = IconSecondary,
+                backgroundColor = Color.Unspecified
+            )
         )
     )
 }

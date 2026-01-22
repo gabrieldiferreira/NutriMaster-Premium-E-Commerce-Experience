@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.gabrielferreira_dev.nutrimaster.home.HomeGraphScreen
+import com.gabrielferreira_dev.nutrimaster.profile.ProfileScreen
 import com.nutrimaster.auth.AuthScreen
 import com.nutrimaster.shared.navigation.Screen
 
@@ -26,7 +27,25 @@ fun SetupNavGraph(startDestination: Screen = Screen.Auth){
             )
         }
         composable<Screen.HomeGraph> {
-            HomeGraphScreen()
+            HomeGraphScreen(
+                navigateToAuth = {
+                    navController.navigate(Screen.Auth) {
+                        popUpTo<Screen.HomeGraph> { inclusive = true }
+                    }
+                },
+                navigateToProfile = {
+                    navController.navigate(Screen.Profile){
+                        popUpTo<Screen.Profile> { inclusive = true}
+                    }
+                }
+            )
+        }
+        composable<Screen.Profile> {
+            ProfileScreen(
+                navigateBack = {
+                    navController.navigateUp()
+                }
+            )
         }
     }
 }
