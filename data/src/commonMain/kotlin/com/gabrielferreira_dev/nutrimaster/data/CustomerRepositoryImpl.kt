@@ -26,6 +26,8 @@ class CustomerRepositoryImpl : CustomerRepository {
                     firstName = user.displayName?.split(" ")?.firstOrNull() ?: "Unknown",
                     lastName = user.displayName?.split(" ")?.lastOrNull() ?: "Unknown",
                     email = user.email ?: "Unknown",
+                    postalCode = "Unknown",
+                    photoURL = user.photoURL ?: "Unknown"
                 )
                 val customerExists = customerCollection.document(user.uid).get().exists
                 if(customerExists){

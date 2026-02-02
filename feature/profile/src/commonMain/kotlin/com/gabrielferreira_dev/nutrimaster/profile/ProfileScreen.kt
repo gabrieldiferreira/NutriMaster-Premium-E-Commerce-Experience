@@ -85,6 +85,7 @@ fun ProfileScreen(
                 country = country,
                 onCountrySelect = {
                 },
+                photoUrl = "",
                 firstName = "",
                 onFirstNameChange = {},
                 lastName = "",
@@ -92,7 +93,7 @@ fun ProfileScreen(
                 email = "",
                 city = "",
                 onCityChange = {},
-                postalCode = null,
+                postalCode = "",
                 onPostalCodeChange = {},
                 address = "",
                 onAddressChange = {},
