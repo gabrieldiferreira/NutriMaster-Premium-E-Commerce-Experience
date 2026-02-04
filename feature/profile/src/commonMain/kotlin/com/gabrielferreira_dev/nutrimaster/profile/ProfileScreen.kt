@@ -1,7 +1,9 @@
 package com.gabrielferreira_dev.nutrimaster.profile
 
+import ContentWithMessageBar
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -12,10 +14,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.nutrimaster.shared.BebasNeueFont
@@ -24,10 +22,14 @@ import com.nutrimaster.shared.IconPrimary
 import com.nutrimaster.shared.Resources
 import com.nutrimaster.shared.Surface
 import com.nutrimaster.shared.TextPrimary
+import com.nutrimaster.shared.component.ErrorCard
+import com.nutrimaster.shared.component.LoadingCard
 import com.nutrimaster.shared.component.PrimaryButton
 import com.nutrimaster.shared.component.ProfileForm
-import com.nutrimaster.shared.domain.Country
+import com.nutrimaster.shared.util.DisplayResult
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.viewmodel.koinViewModel
+import rememberMessageBarState
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,7 +37,12 @@ import org.jetbrains.compose.resources.painterResource
 fun ProfileScreen(
      navigateBack: () -> Unit
 ) {
-    var country by remember { mutableStateOf(Country.Australia) }
+    //integracao para ler os dados
+    val viewModel = koinViewModel<ProfileViewModel>()
+    val screenReady = viewModel.screenReady
+    val screenState = viewModel.screenState
+    val isFormValid = viewModel.isFormValid
+    val messageBarState = rememberMessageBarState()
 
     Scaffold(
         containerColor = Surface,
@@ -67,45 +74,78 @@ fun ProfileScreen(
                 )
             )
         }
-    )   { padding ->
-        Column(
+    ) { padding ->
+        ContentWithMessageBar(
+            contentBackgroundColor = Surface,
             modifier = Modifier
                 .padding(
                     top = padding.calculateTopPadding(),
                     bottom = padding.calculateBottomPadding()
+                ),
+            messageBarState = messageBarState,
+            errorMaxLines = 2
+        ){
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 24.dp)
+                    .padding(
+                        top = 12.dp,
+                        bottom = 24.dp
+                    )
+            ) {
+                screenReady.DisplayResult(
+                    onLoading = { LoadingCard(modifier = Modifier.fillMaxSize()) },
+                    onSuccess = { state ->
+                        Column(
+                            modifier = Modifier.fillMaxSize()
+                        ) {
+                            ProfileForm(
+                                modifier = Modifier.weight(1f),
+                                country = screenState.country,
+                                onCountrySelect = viewModel::updateCountry,
+                                photoUrl = screenState.photoURL,
+                                firstName = screenState.firstName,
+                                onFirstNameChange = viewModel::updateFirstName,
+                                lastName = screenState.lastName,
+                                onLastNameChange = viewModel::updateLastName,
+                                email = screenState.email,
+                                city = screenState.city,
+                                onCityChange = viewModel::updateCity,
+                                postalCode = screenState.postalCode,
+                                onPostalCodeChange = viewModel::updatePostalCode,
+                                address = screenState.address,
+                                onAddressChange = viewModel::updateAddress,
+                                phoneNumber = screenState.phoneNumber?.number,
+                                onPhoneNumberChange = viewModel::updatePhoneNumber
+                            )
+                            Spacer(modifier = Modifier.height(12.dp))
+                            PrimaryButton(
+                                text = "Atualizar Cadastro",
+                                icon = Resources.Icon.Checkmark,
+                                enabled = isFormValid,
+                                onClick = {
+                                    viewModel.updateCustomer(
+                                        onSuccess = {
+                                            messageBarState.addSuccess("Cadastro Atualizado!")
+                                        },
+                                        onError = { message ->
+                                            messageBarState.addError(message)
+                                        }
+                                    )
+                                }
+                            )
+                        }
+                    },
+                    onError = { message ->
+                        ErrorCard(
+                            modifier = Modifier.fillMaxSize(),
+                            message = message,
+                            fontSize = FontSize.REGULAR
+                        )
+                    }
                 )
-                .padding(horizontal = 24.dp)
-                .padding(
-                    top = 12.dp,
-                    bottom = 24.dp
-                )
-        ) {
-            ProfileForm(
-                modifier = Modifier.weight(1f),
-                country = country,
-                onCountrySelect = {
-                },
-                photoUrl = "",
-                firstName = "",
-                onFirstNameChange = {},
-                lastName = "",
-                onLastNameChange = {},
-                email = "",
-                city = "",
-                onCityChange = {},
-                postalCode = "",
-                onPostalCodeChange = {},
-                address = "",
-                onAddressChange = {},
-                phoneNumber = null,
-                onPhoneNumberChange = {}
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-            PrimaryButton(
-                text = "Atualizar Cadastro",
-                icon = Resources.Icon.Checkmark,
-                onClick = {}
-            )
+            }
         }
     }
 }

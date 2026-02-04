@@ -4,6 +4,7 @@ package com.gabrielferreira_dev.nutrimaster.di
 import com.gabrielferreira_dev.nutrimaster.data.CustomerRepositoryImpl
 import com.gabrielferreira_dev.nutrimaster.data.domain.CustomerRepository
 import com.gabrielferreira_dev.nutrimaster.home.HomeGraphViewModel
+import com.gabrielferreira_dev.nutrimaster.profile.ProfileViewModel
 import com.nutrimaster.auth.AuthViewModel
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
@@ -14,6 +15,7 @@ val sharedModule = module {
     single<CustomerRepository> { CustomerRepositoryImpl() }
     viewModelOf(::AuthViewModel)
     viewModelOf(::HomeGraphViewModel)
+    viewModelOf(::ProfileViewModel)
 }
 fun initializeKoin(
     config: (KoinApplication.() -> Unit)? = null,

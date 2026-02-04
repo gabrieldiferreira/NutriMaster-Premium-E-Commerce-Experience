@@ -48,11 +48,11 @@ fun ProfileForm(
     onLastNameChange: (String) -> Unit,
     email: String,
     photoUrl: String?,
-    city: String,
+    city: String?,
     onCityChange: (String) -> Unit,
-    onPostalCodeChange: (Int?) -> Unit,
-    postalCode: String,
-    address: String,
+    onPostalCodeChange: (String) -> Unit,
+    postalCode: String?,
+    address: String?,
     onAddressChange: (String) -> Unit,
     phoneNumber: String?,
     onPhoneNumberChange: (String) -> Unit,
@@ -63,7 +63,7 @@ fun ProfileForm(
         visible = showCountryDialog
     ) {
         CountryPickerDialog(
-            country = country,
+            country = Country.Australia,
             onDismiss = { showCountryDialog = false },
             onConfirmClick = { selectedCountry ->
                 showCountryDialog = false
@@ -105,13 +105,13 @@ fun ProfileForm(
                     value = firstName,
                     onValueChange = onFirstNameChange,
                     placeholder = "Primeiro Nome",
-                    error = firstName.isNotEmpty() || firstName.length !in 3..50
+                    error = firstName.length !in 3..50
                 )
                 CustomTextField(
                     value = lastName,
                     onValueChange = onLastNameChange,
                     placeholder = "Ultimo Nome",
-                    error = lastName.isNotEmpty() || lastName.length !in 3..50
+                    error = lastName.length !in 3..50
                 )
             }
     }
@@ -122,25 +122,25 @@ fun ProfileForm(
                 enabled = false
             )
             CustomTextField(
-                value = city,
+                value = city ?: "",
                 onValueChange = onCityChange,
                 placeholder = "Cidade",
-                error = city.isNotEmpty() || city.length !in 3..50
+                error = city?.length !in 3..50
             )
             CustomTextField(
-                value = postalCode,
-                onValueChange = { onPostalCodeChange(it.toIntOrNull()) },
+                value = postalCode ?: "",
+                onValueChange =  onPostalCodeChange,
                 placeholder = "Postal Code",
-                error = postalCode.isNotEmpty() || postalCode.length !in 3..9,
+                error = postalCode?.length !in 3..9,
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Number
                 )
             )
             CustomTextField(
-                value = address,
+                value = address ?: "",
                 onValueChange = onAddressChange,
                 placeholder = "Endereço",
-                error = address.isNotEmpty() || address.length !in 3..50
+                error = address?.length !in 3..50
             )
             Row (
                 modifier = Modifier.fillMaxWidth(),
