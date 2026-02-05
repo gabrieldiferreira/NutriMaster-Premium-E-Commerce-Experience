@@ -5,11 +5,12 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Customer (
     val id: String,
+    val photoURL: String?,
     val firstName: String,
     val lastName: String,
     val email: String,
     val city: String? = null,
-    val postalCode: String? = null,
+    val postalCode: String,
     val address: String? = null,
     val phoneNumber: PhoneNumber? = null,
     val cart: List<CartItem> = emptyList()
