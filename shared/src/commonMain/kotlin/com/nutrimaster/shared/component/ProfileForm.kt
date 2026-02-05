@@ -131,7 +131,7 @@ fun ProfileForm(
                 value = postalCode ?: "",
                 onValueChange =  onPostalCodeChange,
                 placeholder = "Postal Code",
-                error = postalCode?.length !in 3..9,
+                error = !postalCode.isNullOrEmpty() && postalCode.length != 8,
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Number
                 )

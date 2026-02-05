@@ -22,7 +22,7 @@ data class ProfileScreenState(
     val lastName: String = "",
     val email: String = "",
     val city: String? = null,
-    val postalCode: String? = "",
+    val postalCode: String = "",
     val address: String? = null,
     val country: Country = Country.Australia,
     val phoneNumber: PhoneNumber? = null,
@@ -39,10 +39,10 @@ class ProfileViewModel(
         get() = with(screenState){
             firstName.length in 3..50 &&
             lastName.length in 3..50 &&
-            city?.length in 3..50 &&
-            postalCode?.length in 3..8 &&
-            address?.length in 3..50 &&
-            phoneNumber?.number?.length in 5..30
+            city?.length in 3..20 &&
+            postalCode.length == 8 &&
+            address?.length in 5..100 &&
+            phoneNumber?.number?.length in 8..15
         }
     init {
         refreshProfile()
@@ -97,7 +97,10 @@ class ProfileViewModel(
         screenState = screenState.copy(city = value)
     }
     fun updatePostalCode(value: String){
-        screenState = screenState.copy(postalCode = value)
+        val onlyNumbers = value.filter { it.isDigit() }
+        if (onlyNumbers.length <= 8){
+            screenState = screenState.copy(postalCode = value)
+        }
     }
     fun updateAddress(value: String){
         screenState = screenState.copy(address = value)

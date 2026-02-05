@@ -94,10 +94,10 @@ class CustomerRepositoryImpl : CustomerRepository {
                 val document = customerCollection.document(userId).get()
                 if (!document.exists){
                     val updatedData = mutableMapOf<String, Any?>(
-                        "firstName" to (user.displayName?.split(" ")?.firstOrNull() ?: "Unknown"),
-                        "lastName" to (user.displayName?.split(" ")?.lastOrNull() ?: "Unknown"),
-                        "email" to (user.email ?: "Unknown"),
-                        "photoURL" to (user.photoURL ?: "Unknown")
+                        "firstName" to (user.displayName?.split(" ")?.firstOrNull() ?: ""),
+                        "lastName" to (user.displayName?.split(" ")?.lastOrNull() ?: ""),
+                        "email" to (user.email ?: ""),
+                        "photoURL" to (user.photoURL ?: "")
                     )
                     customerCollection.document(userId).update(updatedData)
                 }
