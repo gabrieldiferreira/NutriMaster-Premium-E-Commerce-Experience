@@ -23,6 +23,7 @@ import com.nutrimaster.shared.Resources
 import com.nutrimaster.shared.Surface
 import com.nutrimaster.shared.TextPrimary
 import com.nutrimaster.shared.component.ErrorCard
+import com.nutrimaster.shared.component.InfoCard
 import com.nutrimaster.shared.component.LoadingCard
 import com.nutrimaster.shared.component.PrimaryButton
 import com.nutrimaster.shared.component.ProfileForm
@@ -138,10 +139,10 @@ fun ProfileScreen(
                         }
                     },
                     onError = { message ->
-                        ErrorCard(
-                            modifier = Modifier.fillMaxSize(),
-                            message = message,
-                            fontSize = FontSize.REGULAR
+                        InfoCard(
+                            image = Resources.Image.Cat,
+                            title = "Oops! Nada Encontrado",
+                            subtitle = message
                         )
                     }
                 )
